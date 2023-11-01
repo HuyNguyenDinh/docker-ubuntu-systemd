@@ -28,7 +28,7 @@ RUN apt-get update ; \
 
 # Set timezone
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
-RUN echo $TZ >> /etc/timezone
+RUN echo "$TZ" >> /etc/timezone
 
 VOLUME [ "/sys/fs/cgroup" ]
 
