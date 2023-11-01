@@ -1,16 +1,17 @@
 FROM ubuntu:jammy
 
-LABEL maintainer="Robert de Bock <robert@meinit.nl>"
-LABEL build_date="2023-06-13"
+LABEL maintainer="Huy Nguyen Dinh <huyn27316@gmail.com>"
+LABEL build_date="2023-11-01"
 
 ENV container docker
+ENV TZ="Asia/Ho_Chi_Minh"
 
 # Enable apt repositories.
 RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list
 
 # Enable systemd.
 RUN apt-get update ; \
-    apt-get install -y systemd systemd-sysv ; \
+    apt-get install -y systemd systemd-sysv tzdata; \
     apt-get clean ; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ; \
     cd /lib/systemd/system/sysinit.target.wants/ ; \
@@ -24,6 +25,10 @@ RUN apt-get update ; \
     rm -f /lib/systemd/system/anaconda.target.wants/* ; \
     rm -f /lib/systemd/system/plymouth* ; \
     rm -f /lib/systemd/system/systemd-update-utmp*
+
+# Set timezone
+RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+RUN timedatectl set-timezone $TZ
 
 VOLUME [ "/sys/fs/cgroup" ]
 
