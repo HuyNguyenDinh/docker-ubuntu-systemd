@@ -33,6 +33,4 @@ RUN apt-get update && apt-get install -y build-essential python3.10 python3.10-v
 # Set timezone
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 
-VOLUME [ "/sys/fs/cgroup" ]
-
 CMD ["/lib/systemd/systemd"]
