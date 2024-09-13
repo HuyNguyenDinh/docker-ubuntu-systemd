@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  master01: &default-instance
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      os-network:
+    privileged: true
+    environment:
+      TZ: "Asia/Ho_Chi_Minh"
+
+  slave01: *default-instance
+
+  slave02: *default-instance
+
+  slave03: *default-instance
+
+networks:
+  os-network:
