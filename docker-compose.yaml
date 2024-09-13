@@ -5,17 +5,35 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: master
     networks:
       os-network:
     privileged: true
     environment:
       TZ: "Asia/Ho_Chi_Minh"
+    ports:
+      - "23:22"
+      - "9870:9870"
+      - "8088:8088"
 
-  slave01: *default-instance
+  slave01:
+    <<: *default-instance
+    container_name: slave01
+    ports:
+      - "24:22"
 
-  slave02: *default-instance
+  slave02:
+    <<: *default-instance
+    container_name: slave02
+    ports:
+      - "25:22"
 
-  slave03: *default-instance
+  slave03:
+    <<: *default-instance
+    container_name: slave03
+    ports:
+      - "26:22"
 
 networks:
   os-network:
+    driver: bridge
