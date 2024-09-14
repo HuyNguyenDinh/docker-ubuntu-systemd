@@ -5,17 +5,24 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: master
     networks:
       os-network:
     privileged: true
     environment:
       TZ: "Asia/Ho_Chi_Minh"
 
-  slave01: *default-instance
+  slave01: 
+    <<: *default-instance
+    container_name: slave01
 
-  slave02: *default-instance
+  slave02:
+    <<: *default-instance
+    container_name: slave02
 
-  slave03: *default-instance
+  slave03:
+    <<: *default-instance
+    container_name: slave03
 
 networks:
   os-network:

@@ -32,7 +32,8 @@ RUN apt-get update && apt-get install software-properties-common -y # buildkit
 RUN add-apt-repository ppa:deadsnakes/ppa # buildkit
 RUN apt-get update && apt-get install -y build-essential python3.10 python3.10-venv python3.10-dev default-libmysqlclient-dev pkg-config gcc git vim # buildkit
 
-RUN apt-get update && apt-get install -y openssh-server sudo
+RUN apt-get update && apt-get install -y openssh-server sudo dbus
+
 # Create a new user named 'ubuntu' and add SSH setup
 RUN useradd -m -s /bin/bash ubuntu && \
     mkdir -p /home/ubuntu/.ssh && \
