@@ -38,6 +38,8 @@ RUN useradd -m -s /bin/bash ubuntu && \
     mkdir -p /home/ubuntu/.ssh && \
     chmod 700 /home/ubuntu/.ssh
 
+RUN echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/ubuntu && \
+    chmod 0440 /etc/sudoers.d/ubuntu
 COPY --chown=ubuntu:ubuntu .ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
 
 RUN chmod 600 /home/ubuntu/.ssh/authorized_keys && \
