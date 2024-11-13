@@ -1,7 +1,7 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 LABEL maintainer="Huy Nguyen Dinh <huyn27316@gmail.com>"
-LABEL build_date="2023-11-01"
+LABEL build_date="2024-11-01"
 
 ENV container docker
 ENV TZ="UTC"
